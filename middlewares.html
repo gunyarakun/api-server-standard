@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Middlewares &mdash; ApiServer 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="static/dotted.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="ApiServer 0.0.1 documentation" href="index.html" />
+    <link rel="next" title="3. Install" href="install.html" />
+    <link rel="prev" title="1. API specification" href="api.html" /> 
+  </head>
+  <body>
+        <div class="header">
+          <div class="header-top">
+            <h1 class="heading"><a href="index.html">
+              <span>ApiServer 0.0.1 documentation</span></a></h1>
+            <h2 class="heading"><span>2. Middlewares</span></a></h2>
+          </div>
+          <div class="topnav">
+            
+        <p>
+        &#171;&#160;&#160;<a href="api.html">1. API specification</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="install.html">3. Install</a>&#160;&#160;&#187;
+        </p>
+
+            <div class="globaltoc">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">1. API specification</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">2. Middlewares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">3. Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">4. ToDo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">5. How to perticipate developing</a></li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">  
+
+          <div class="document">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+  <div class="section" id="middlewares">
+<h1>2. Middlewares<a class="headerlink" href="#middlewares" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<caption>Middlewares</caption>
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="22%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head">Ruby</th>
+<th class="head">Perl</th>
+<th class="head">Java</th>
+<th class="head">JRuby-Netty</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Programming Language</td>
+<td>Ruby</td>
+<td>Perl</td>
+<td>Java</td>
+<td>Ruby</td>
+</tr>
+<tr class="row-odd"><td>Application Server</td>
+<td>Unicorn</td>
+<td>Starlet</td>
+<td>Jetty</td>
+<td>Netty</td>
+</tr>
+<tr class="row-even"><td>Web Server Interface</td>
+<td>Rack</td>
+<td>PSGI/Plack</td>
+<td>Servlet</td>
+<td>Netty</td>
+</tr>
+<tr class="row-odd"><td>Web Application Framework</td>
+<td>Sinatra</td>
+<td>Amon2::Lite</td>
+<td>htmleasy based on resteasy</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>MySQL Driver</td>
+<td>mysql2</td>
+<td>DBD::mysql</td>
+<td>Connector/J</td>
+<td>ActiveRecord-JDBC</td>
+</tr>
+<tr class="row-odd"><td>SQL Builder</td>
+<td>Arel</td>
+<td>SQL::Maker</td>
+<td>Querydsl</td>
+<td>Arel</td>
+</tr>
+<tr class="row-even"><td>YAML Loader</td>
+<td>yaml</td>
+<td>YAML::XS</td>
+<td>SnakeYAML</td>
+<td>yaml</td>
+</tr>
+<tr class="row-odd"><td>JSON Builder</td>
+<td>json</td>
+<td>JSON::XS</td>
+<td>JSON.simple</td>
+<td>json</td>
+</tr>
+<tr class="row-even"><td>Documentation</td>
+<td>YARD yard-sinatra</td>
+<td>POD</td>
+<td>JavaDoc</td>
+<td>YARD</td>
+</tr>
+<tr class="row-odd"><td>Unit testing</td>
+<td>rspec rake-test</td>
+<td><div class="first last line-block">
+<div class="line">Test::Unit</div>
+<div class="line">Test::WWW::Mechanize::PSGI</div>
+</div>
+</td>
+<td>TestNG Spock</td>
+<td>rspec</td>
+</tr>
+<tr class="row-even"><td>CI</td>
+<td>Travis CI</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Travis CI</td>
+<td>Travis CI</td>
+</tr>
+<tr class="row-odd"><td>Memcached driver</td>
+<td>memcached</td>
+<td>Cache::Memcached::Fast</td>
+<td>xmemcached</td>
+<td>jruby-memcache-client</td>
+</tr>
+<tr class="row-even"><td>Profiler</td>
+<td>RubyProf -&gt; llprof</td>
+<td>Devel::NYTProf</td>
+<td>Something which uses JVMTI(not used yet)</td>
+<td>jruby-prof</td>
+</tr>
+<tr class="row-odd"><td>Auto reload on developing</td>
+<td>shotgun</td>
+<td>Plack::Loader::Shotgun</td>
+<td>Gradle Jetty Plugin</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Show stack trace on HTML</td>
+<td>Sinatra Rack::ShowExceptions</td>
+<td><div class="first last line-block">
+<div class="line">Amon2::Lite</div>
+<div class="line">Plack::Middleware::HTTPExceptions</div>
+</div>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Security</td>
+<td>rack-protection</td>
+<td>Amon2::Plugin::Web::CSRFDefender.pm</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>DI container</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Guice</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Module management</td>
+<td>rvm gem</td>
+<td>cpanm</td>
+<td>Gradle Ivy</td>
+<td>rvm gem</td>
+</tr>
+<tr class="row-even"><td>A/B test</td>
+<td>split</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+                </div>
+              </div>
+
+            </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="previous chapter">1. API specification</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="next chapter">3. Install</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/middlewares.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+
+        <div class="bottomnav">
+          
+        <p>
+        &#171;&#160;&#160;<a href="api.html">1. API specification</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="install.html">3. Install</a>&#160;&#160;&#187;
+        </p>
+
+        </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Tasuku SUENAGA a.k.a. gunyarakun.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

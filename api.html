@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. API specification &mdash; ApiServer 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="static/dotted.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="ApiServer 0.0.1 documentation" href="index.html" />
+    <link rel="next" title="2. Middlewares" href="middlewares.html" />
+    <link rel="prev" title="Sample of REST API Server with multi-language" href="index.html" /> 
+  </head>
+  <body>
+        <div class="header">
+          <div class="header-top">
+            <h1 class="heading"><a href="index.html">
+              <span>ApiServer 0.0.1 documentation</span></a></h1>
+            <h2 class="heading"><span>1. API specification</span></a></h2>
+          </div>
+          <div class="topnav">
+            
+        <p>
+        &#171;&#160;&#160;<a href="index.html">Sample of REST API Server with multi-language</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="middlewares.html">2. Middlewares</a>&#160;&#160;&#187;
+        </p>
+
+            <div class="globaltoc">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">1. API specification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#response">1.1. Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#users">1.2. users</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="middlewares.html">2. Middlewares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">3. Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">4. ToDo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">5. How to perticipate developing</a></li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="wrapper">  
+
+          <div class="document">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+  <div class="section" id="api-specification">
+<h1>1. API specification<a class="headerlink" href="#api-specification" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="response">
+<h2>1.1. Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h2>
+<p>All responses are returned in JSON. But some internal errors are responded when HTTP header &#8216;Accept&#8217; contains &#8216;text/html&#8217; and the server runs in debug mode.</p>
+<dl class="response">
+<dt id="response-json-response">
+<strong class="deschttpresponse">JSON Response</strong><a class="headerlink" href="#response-json-response" title="Permalink to this definition">¶</a></dt>
+<dd><p>All responses are returned in the same format.</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;response_code&quot;</span><span class="o">:</span> <span class="nx">HTTP_RESPONSE_CODE</span><span class="p">,</span>
+  <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="nx">ERROR_MESSAGE</span><span class="p">,</span>
+  <span class="s2">&quot;more_info&quot;</span><span class="o">:</span> <span class="nx">ERROR_DETAIL_URL</span><span class="p">,</span>
+  <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="nx">ERROR_CODE</span>
+  <span class="s2">&quot;body&quot;</span><span class="o">:</span> <span class="nx">RESPONSE_BODY</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Data:</th><td class="field-body"><ul class="first last simple">
+<li><strong>HTTP_RESPONSE_CODE</strong> (<em>string</em>) &#8211; HTTP Response code. Exists only when a parameter &#8216;supress_response_codes&#8217; is true. NOTE: not number, string.</li>
+<li><strong>ERROR_MESSAGE</strong> (<em>string</em>) &#8211; Error message. The message are written in the language specified by HTTP request header &#8216;Accept-Language&#8217;.</li>
+<li><strong>ERROR_DETAIL_URL</strong> (<em>string</em>) &#8211; URL for more details about the error.</li>
+<li><strong>ERROR_CODE</strong> (<em>string</em>) &#8211; Error code on the application domain.</li>
+<li><strong>RESPONSE_BODY</strong> (<em>Object</em>) &#8211; Response body.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="response">
+<dt id="response-error-stacktrace">
+<strong class="deschttpresponse">Error stacktrace</strong><a class="headerlink" href="#response-error-stacktrace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error stack trace written in HTML.</p>
+</dd></dl>
+
+<dl class="response">
+<dt id="response-single-user-response">
+<strong class="deschttpresponse">Single user response</strong><a class="headerlink" href="#response-single-user-response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Response body for a single user is below.</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="nx">USER_ID</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="nx">USER_NAME</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Data:</th><td class="field-body"><ul class="first last simple">
+<li><strong>USER_ID</strong> (<em>integer</em>) &#8211; id number for user</li>
+<li><strong>USER_NAME</strong> (<em>string</em>) &#8211; name of user</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="response">
+<dt id="response-multiple-user-response">
+<strong class="deschttpresponse">Multiple user response</strong><a class="headerlink" href="#response-multiple-user-response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Response body for multiple users is below.</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span>
+  <span class="p">[</span><span class="nx">USER_ID_1</span><span class="p">,</span> <span class="nx">USER_NAME_1</span><span class="p">],</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Data:</th><td class="field-body"><ul class="first last simple">
+<li><strong>USER_ID_1</strong> (<em>integer</em>) &#8211; id number for the first user</li>
+<li><strong>USER_NAME_1</strong> (<em>string</em>) &#8211; name of the first user</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="users">
+<h2>1.2. users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="method-v1-users-post">
+<tt class="descclassname deschttpmethod">POST </tt><tt class="descname deschttpurl"><span class="deschttppath">/v1/users[.json]</span><span class="deschttpquery">?<em class="deschttpqueryparam">name</em>&amp;<em class="deschttpqueryparam">supress_response_codes</em></span></tt><a class="headerlink" href="#method-v1-users-post" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Query params:</th><td class="field-body"><p class="first"><strong>name</strong> (<em>string</em>) &#8211; new user name</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Opt. params:</th><td class="field-body"><p class="first"><strong>supress_response_codes</strong> (<em>boolean</em>) &#8211; returns response with code 200 always. The response code is in the response body.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Responses:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; create successfully.</li>
+<li><strong>400</strong> &#8211; required parameters not exists.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-get-v1-usersjson-fields-orderby-offset-limit-method-supress_response_codes">
+<tt class="descclassname deschttpmethod">GET </tt><tt class="descname deschttpurl"><span class="deschttppath">/v1/users[.json]</span><span class="deschttpquery">?<em class="deschttpqueryparam">fields</em>&amp;<em class="deschttpqueryparam">orderby</em>&amp;<em class="deschttpqueryparam">offset</em>&amp;<em class="deschttpqueryparam">limit</em>&amp;<em class="deschttpqueryparam">method</em>&amp;<em class="deschttpqueryparam">supress_response_codes</em></span></tt><a class="headerlink" href="#method-get-v1-usersjson-fields-orderby-offset-limit-method-supress_response_codes" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Opt. params:</th><td class="field-body"><ul class="first simple">
+<li><strong>fields</strong> (<em>string</em>) &#8211; columns contained in response</li>
+<li><strong>orderby</strong> (<em>string</em>) &#8211; sort key</li>
+<li><strong>offset</strong> (<em>integer</em>) &#8211; pager offset</li>
+<li><strong>limit</strong> (<em>integer</em>) &#8211; pager limit</li>
+<li><strong>method</strong> (<em>string</em>) &#8211; if &#8216;post&#8217;, <a class="reference internal" href="#method-v1-users-post" title="POST /v1/users[.json]?name&amp;supress_response_codes"><tt class="docutils literal"><span class="pre">API</span> <span class="pre">Users</span> <span class="pre">POST</span></tt></a>. if &#8216;delete&#8217;, <a class="reference internal" href="#method-v1-users-delete" title="DELETE /v1/users[.json]?supress_response_codes"><tt class="docutils literal"><span class="pre">API</span> <span class="pre">Users</span> <span class="pre">DELETE</span></tt></a>.</li>
+<li><strong>supress_response_codes</strong> (<em>boolean</em>) &#8211; returns response with code 200 always. The response code is in the response body.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Responses:</th><td class="field-body"><p class="first last"><strong>200</strong> &#8211; list successfully.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-v1-users-delete">
+<tt class="descclassname deschttpmethod">DELETE </tt><tt class="descname deschttpurl"><span class="deschttppath">/v1/users[.json]</span><span class="deschttpquery">?<em class="deschttpqueryparam">supress_response_codes</em></span></tt><a class="headerlink" href="#method-v1-users-delete" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Opt. params:</th><td class="field-body"><strong>supress_response_codes</strong> (<em>boolean</em>) &#8211; returns response with code 200 always. The response code is in the response body.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Responses:</th><td class="field-body"><strong>200</strong> &#8211; delete all users successfully.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-get-v1-users-user_id-json-method-supress_response_codes">
+<tt class="descclassname deschttpmethod">GET </tt><tt class="descname deschttpurl"><span class="deschttppath">/v1/users/<em class="deschttppatharg">{<span class="deschttppatharg deschttppatharg">user_id</span>}</em>[.json]</span><span class="deschttpquery">?<em class="deschttpqueryparam">method</em>&amp;<em class="deschttpqueryparam">supress_response_codes</em></span></tt><a class="headerlink" href="#method-get-v1-users-user_id-json-method-supress_response_codes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Opt. params:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>integer</em>) &#8211; user_id</li>
+<li><strong>method</strong> (<em>string</em>) &#8211; if &#8216;put&#8217;, <a class="reference internal" href="#method-v1-user-put" title="PUT /v1/users/{user_id}[.json]?name&amp;supress_response_codes"><tt class="docutils literal"><span class="pre">API</span> <span class="pre">User</span> <span class="pre">PUT</span></tt></a>. if &#8216;delete&#8217;, <a class="reference internal" href="#method-v1-user-delete" title="DELETE /v1/users/{user_id}[.json]?supress_response_codes"><tt class="docutils literal"><span class="pre">API</span> <span class="pre">User</span> <span class="pre">DELETE</span></tt></a>.</li>
+<li><strong>supress_response_codes</strong> (<em>boolean</em>) &#8211; returns response with code 200 always. The response code is in the response body.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Responses:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; list successfully.</li>
+<li><strong>404</strong> &#8211; no user found.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-v1-user-put">
+<tt class="descclassname deschttpmethod">PUT </tt><tt class="descname deschttpurl"><span class="deschttppath">/v1/users/<em class="deschttppatharg">{<span class="deschttppatharg deschttppatharg">user_id</span>}</em>[.json]</span><span class="deschttpquery">?<em class="deschttpqueryparam">name</em>&amp;<em class="deschttpqueryparam">supress_response_codes</em></span></tt><a class="headerlink" href="#method-v1-user-put" title="Permalink to this definition">¶</a></dt>
+<dd><p>If exists update the user.
+If not error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Opt. params:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>integer</em>) &#8211; user_id</li>
+<li><strong>name</strong> (<em>string</em>) &#8211; user name</li>
+<li><strong>supress_response_codes</strong> (<em>boolean</em>) &#8211; returns response with code 200 always. The response code is in the response body.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Responses:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; list successfully.</li>
+<li><strong>404</strong> &#8211; no user found.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-v1-user-delete">
+<tt class="descclassname deschttpmethod">DELETE </tt><tt class="descname deschttpurl"><span class="deschttppath">/v1/users/<em class="deschttppatharg">{<span class="deschttppatharg deschttppatharg">user_id</span>}</em>[.json]</span><span class="deschttpquery">?<em class="deschttpqueryparam">supress_response_codes</em></span></tt><a class="headerlink" href="#method-v1-user-delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Opt. params:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>integer</em>) &#8211; user_id</li>
+<li><strong>supress_response_codes</strong> (<em>boolean</em>) &#8211; returns response with code 200 always. The response code is in the response body.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Responses:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; list successfully.</li>
+<li><strong>404</strong> &#8211; no user found.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-get-v1-users-countjson-supress_response_codes">
+<tt class="descclassname deschttpmethod">GET </tt><tt class="descname deschttpurl"><span class="deschttppath">/v1/users/count[.json]</span><span class="deschttpquery">?<em class="deschttpqueryparam">supress_response_codes</em></span></tt><a class="headerlink" href="#method-get-v1-users-countjson-supress_response_codes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns user count.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Opt. params:</th><td class="field-body"><strong>supress_response_codes</strong> (<em>boolean</em>) &#8211; returns response with code 200 always. The response code is in the response body.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Responses:</th><td class="field-body"><strong>200</strong> &#8211; count successfully.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+                </div>
+              </div>
+
+            </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. API specification</a><ul>
+<li><a class="reference internal" href="#response">1.1. Response</a></li>
+<li><a class="reference internal" href="#users">1.2. users</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Sample of REST API Server with multi-language</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="middlewares.html"
+                        title="next chapter">2. Middlewares</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+
+        <div class="bottomnav">
+          
+        <p>
+        &#171;&#160;&#160;<a href="index.html">Sample of REST API Server with multi-language</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="middlewares.html">2. Middlewares</a>&#160;&#160;&#187;
+        </p>
+
+        </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Tasuku SUENAGA a.k.a. gunyarakun.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
