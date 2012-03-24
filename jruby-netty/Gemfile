@@ -1,0 +1,7 @@
+# vim: set expandtab ts=2 sw=2 nowrap ft=ruby ff=unix : */
+source :rubygems
+
+gem 'activerecord'
+gem 'activerecord-jdbcmysql-adapter'
+gem 'rspec', :require => 'spec'
+gem 'yard'

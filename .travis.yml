@@ -1,0 +1,16 @@
+# vim: set expandtab ts=2 sw=2 nowrap ft=yaml ff=unix :
+language: ruby
+script: 'ruby/ci/travis.rb'
+bundler_args: --without development --path ruby/vendor/bundle
+rvm:
+  - 1.9.3
+gemfile:
+  - ruby/Gemfile
+branches:
+  only:
+    - master
+    - develop
+env:
+  - DB=mysql
+before_script:
+  - "./create_database.sh"

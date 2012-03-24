@@ -1,0 +1,15 @@
+# vim: set expandtab ts=2 sw=2 nowrap ft=ruby ff=unix : */
+source :rubygems
+
+gem 'activerecord'
+gem 'mysql2'
+gem 'rack'
+gem 'rspec', :require => 'spec'
+gem 'sinatra'
+gem 'unicorn'
+gem 'shotgun'
+gem 'yard'
+gem 'yard-sinatra'
+gem 'sinatra-contrib' # for Sinatra::JSON
+gem 'rack-protection'
+gem 'rack-test'

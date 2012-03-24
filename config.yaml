@@ -1,0 +1,9 @@
+# vim: set expandtab ts=2 sw=2 nowrap ft=yaml ff=unix : */
+database:
+  adapter: "mysql2" # for Ruby
+  host: "localhost"
+  port: 3306
+  username: "root"
+  password: ""
+  database: "apiserver"
+  encoding: "utf8"
